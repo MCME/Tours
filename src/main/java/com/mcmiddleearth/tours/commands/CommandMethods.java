@@ -9,8 +9,8 @@ import org.bukkit.inventory.ItemStack;
 import static com.mcmiddleearth.tours.Tours.tourPlayers;
 import static com.mcmiddleearth.tours.Tours.tours;
 import static com.mcmiddleearth.tours.utils.Colors.*;
+
 /**
- *
  * @author dags_ <dags@dags.me>
  */
 public class CommandMethods
@@ -45,13 +45,7 @@ public class CommandMethods
     public static void tourRequest(Player p)
     {
         p.sendMessage(yellow + "Request sent!");
-        for (Player q : Bukkit.getOnlinePlayers())
-        {
-            if (q.hasPermission("Tours.ranger") && !q.hasPermission("Tours.admin"))
-            {
-                q.sendMessage(green + p.getName() + yellow + " requests a tour!");
-            }
-        }
+        Bukkit.getServer().broadcast(green + p.getName() + yellow + " requests a tour!", "Tours.notify.request");
     }
 
     public static void tourJoin(Player p, String s)

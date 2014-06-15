@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import static com.mcmiddleearth.tours.utils.Colors.gray;
 
 /**
- *
  * @author dags_ <dags@dags.me>
  */
 public class TourCommands implements CommandExecutor

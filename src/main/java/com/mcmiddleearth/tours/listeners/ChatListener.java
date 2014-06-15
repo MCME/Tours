@@ -9,6 +9,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import static com.mcmiddleearth.tours.Tours.tourPlayers;
 import static com.mcmiddleearth.tours.Tours.tours;
+
 /**
  * @author dags_ <dags@dags.me>
  */
@@ -29,7 +30,10 @@ public class ChatListener implements Listener
             Tour t = tours.get(tourPlayers.get(p.getName()));
             e.getRecipients().removeAll(t.getTourists());
 
-            t.tourChat(p, chat);
+            synchronized (this)
+            {
+                t.tourChat(p, chat);
+            }
         }
     }
 
