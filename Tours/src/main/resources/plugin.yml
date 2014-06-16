@@ -1,0 +1,60 @@
+name: Tours
+main: com.mcmiddleearth.tours.Tours
+version: ${project.version}
+author: dags_
+authors: []
+website: ${project.url}
+
+commands:
+   tour:
+      description: Checks if there are any tours running
+      usage: /<command> <argument>
+      permission: Tours.cmd.user
+      permission-message: Sorry, you don't have don't have permission
+   tourtpa:
+      description: Teleports all users in current tour group (User must be on the Rangers.List in the config.yml)
+      usage: /<command>
+      permission: Tours.cmd.ranger
+      permission-message: Sorry, you don't have don't have permission
+   tourtp:
+      description: Teleports all users in current tour group (User must be on the Rangers.List in the config.yml)
+      usage: /<command> <playername>
+      permission: Tours.cmd.user
+      permission-message: Sorry, you don't have don't have permission
+   ttpa:
+      description: Teleports all users in current tour group (User must be on the Rangers.List in the config.yml)
+      usage: /<command>
+      permission: Tours.cmd.ranger
+      permission-message: Sorry, you don't have don't have permission
+   ttp:
+      description: Teleports all users in current tour group (User must be on the Rangers.List in the config.yml)
+      usage: /<command> <playername>
+      permission: Tours.cmd.user
+      permission-message: Sorry, you don't have don't have permission
+permissions:
+  Tours.user:
+    default: op
+    children:
+      Tours.cmd.user: true
+  Tours.ranger:
+    default: op
+    children:
+      Tours.user: true
+      Tours.cmd.ranger: true
+      Tours.notify.newplayer: true
+      Tours.notify.request: true
+  Tours.cmd.user:
+    description: User permissions.
+    default: true
+  Tours.cmd.ranger:
+    description: Ranger permissions.
+    default: op
+  Tours.notify.newplayer:
+    description: User permissions.
+    default: op
+  Tours.notify.request:
+    description: User permissions.
+    default: op
+  Tours.admin:
+    description: Admin permissions.
+    default: op
