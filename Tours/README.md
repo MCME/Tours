@@ -3,12 +3,11 @@ Tours
 
 Tour management plugin.<br/>
 <i>Allows a 'guide' to create a temporary group that other players can join.<br/>
-Guides then have access to teleportation commands that can only be used on members of that group.<br/></i>
-<br/>
+Guides then have access to teleportation commands that can only be used on members of that group.</i>
 
 ==========
-<b>Permissions</b><br/>
-<br/>
+### Permissions
+
 All users with '<b>Tours.user</b>' permission node can:
 - '<b>/tour</b>' to find info on tours.
 - '<b>/tour help</b>' to find info on Tours commands.
@@ -28,14 +27,13 @@ Users with the '<b>Tours.ranger</b>' permission node can:
 - '<b>/ttpa</b>' shortcut for tourtpa.<br/>
 
 ==========
+### Contributions
 
-<b>Contributions</b> <br/>
 Any contributions should - as best as possible - maintain the existing design paterns, conventions, and styles currently in place in this project.<br/>
 Deprecated or NMS code is to be avoided and subject to scrutiny.<br/>
 
 ==========
-
-<b>License</b><br/>
+### License
 Tours is licensed under the GNU General Public License V3:<br/>
 http://www.gnu.org/copyleft/gpl.html<br/>
 <br/>
