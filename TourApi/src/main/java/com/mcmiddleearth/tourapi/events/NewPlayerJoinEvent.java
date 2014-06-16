@@ -19,6 +19,10 @@ public class NewPlayerJoinEvent extends Event implements TourEvent
     private final String date;
     private final String time;
 
+    /**
+     * The NewPlayerJoinEvent fires after a player connects to the server for the very first time. His UUID, join-date and
+     * join-time will already have been logged by the PlayerTracker instance.
+     */
     public NewPlayerJoinEvent(Player p)
     {
         Date d = new Date();
