@@ -5,13 +5,41 @@ A simple api base for the tours plugin, and now others too!
 
 ==========
 
-<b>Contributions</b> <br/>
+### JavaDocs<br/>
+http://dags-.github.io/ToursJavaDoc/
+
+
+### Maven
+
+TourApi can be manually added to your project as any other jar library (such as bukkit). Alternately, one can use Maven to handle the dependency. A public repository and example dependency is provided below.
+
+**Repository**:
+````
+<repository>
+    <id>dags-nxs</id>
+    <url>http://nxs.dags.me/nexus/content/repositories/DaRepo/</url>
+</repository>
+````
+**Dependency**:
+````
+<dependency>
+  <groupId>com.mcmiddleearth</groupId>
+  <artifactId>TourApi</artifactId>
+  <version>1.0.0</version>
+</dependency>
+````
+
+==========
+
+### Contributions
+
 Any contributions should - as best as possible - maintain the existing design paterns, conventions, and styles currently in place in this project.<br/>
 Deprecated or NMS code is to be avoided and subject to scrutiny.<br/>
 
 ==========
 
-<b>License</b><br/>
+### License
+
 Tours is licensed under the GNU General Public License V3:<br/>
 http://www.gnu.org/copyleft/gpl.html<br/>
 <br/>
