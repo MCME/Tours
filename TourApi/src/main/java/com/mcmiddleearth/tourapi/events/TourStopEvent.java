@@ -22,7 +22,6 @@ public class TourStopEvent extends Event implements TourEvent
     /**
      * The TourStopEvent fires when a tour is closed, providing basic information about the tour
      * to listeners (useful for logging tours maybe?)
-     * @param p Player tour leader
      * @param s String name of tour
      * @param i int size of tour
      */
@@ -74,13 +73,13 @@ public class TourStopEvent extends Event implements TourEvent
     @Override
     public Event toEvent()
     {
-        return null;
+        return this;
     }
 
     @Override
     public HandlerList getHandlers()
     {
-        return null;
+        return handlers;
     }
 
 }

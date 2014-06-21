@@ -2,3 +2,4 @@
 *.bat
 TourApi/target/
 Tours/target/
+.idea/
