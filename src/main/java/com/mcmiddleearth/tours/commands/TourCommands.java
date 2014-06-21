@@ -7,6 +7,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import static com.mcmiddleearth.tours.utils.Colors.gray;
+import static com.mcmiddleearth.tours.Tours.tours;
+import org.bukkit.Bukkit;
 
 /**
  *
@@ -151,6 +153,16 @@ public class TourCommands implements CommandExecutor
                     }
                 }
                 return nope(p);
+            }
+            else if(c.equalsIgnoreCase("stopall")){
+                if(p.hasPermission("Tours.cmd.ranger")){
+                    for(String s : tours.keySet()){
+                        Player ranger = Bukkit.getPlayer(s);
+                        CommandMethods.tourStop(ranger);
+                    }
+                }else{
+                    return nope(p);
+                }
             }
         }
         return false;
