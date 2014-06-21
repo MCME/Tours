@@ -1,18 +1,18 @@
 package com.mcmiddleearth.tours.commands;
 
 import com.mcmiddleearth.tours.tour.Tour;
+import com.mcmiddleearth.tours.tour.TourManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-import static com.mcmiddleearth.tours.Tours.tourPlayers;
-import static com.mcmiddleearth.tours.Tours.tours;
 import static com.mcmiddleearth.tours.utils.Colors.*;
 
 /**
  * @author dags_ <dags@dags.me>
  */
+
 public class CommandMethods
 {
 
@@ -20,7 +20,7 @@ public class CommandMethods
 
     public static void tourInfo(Player p)
     {
-        if (tours.isEmpty())
+        if (TourManager.getNumberOfTours() == 0)
         {
             p.sendMessage(yellow + "There are no tours running right now.");
             p.sendMessage(green + "Online Rangers: ");
@@ -35,7 +35,7 @@ public class CommandMethods
         else
         {
             p.sendMessage(green + "Currently running tours:");
-            for (String s : tours.keySet())
+            for (String s : TourManager.getTours())
             {
                 p.sendMessage(aqua + s);
             }
@@ -50,27 +50,15 @@ public class CommandMethods
 
     public static void tourJoin(Player p, String s)
     {
-        if (!tours.keySet().contains(p.getName()))
+        if (!TourManager.hasTour(p.getName()))
         {
-            if (!tourPlayers.containsKey(p.getName()))
+            if (!TourManager.playerIsTouring(p))
             {
-                String tourName = "null";
-                for (String st : tours.keySet())
+                Tour t = TourManager.matchTour(s);
+                if (t != null)
                 {
-                    if (st.toLowerCase().contains(s.toLowerCase()))
-                    {
-                        tourName = st;
-                        break;
-                    }
-                }
-
-                if (!tourName.equals("null"))
-                {
-                    Tour t = tours.get(tourName);
-
                     t.addTourist(p);
                     t.teleportToLeader(p);
-                    tourPlayers.put(p.getName(), t.getTourName());
                 }
             }
             else
@@ -86,14 +74,15 @@ public class CommandMethods
 
     public static void tourLeave(Player p)
     {
-        if (!tours.keySet().contains(p.getName()))
+        if (!TourManager.hasTour(p.getName()))
         {
-            if (tourPlayers.containsKey(p.getName()))
+            if (TourManager.playerIsTouring(p))
             {
-                Tour t = tours.get(tourPlayers.get(p.getName()));
-                t.removeTourist(p);
-
-                tourPlayers.remove(p.getName());
+                Tour t = TourManager.getPlayerTour(p);
+                if (t != null)
+                {
+                    t.removeTourist(p);
+                }
             }
             else
             {
@@ -131,21 +120,19 @@ public class CommandMethods
 
     public static void tourStart(Player p)
     {
-        if (!tours.containsKey(p.getName()))
+        if (!TourManager.hasTour(p.getName()))
         {
-            Tour t;
-            if (tourPlayers.containsKey(p.getName()))
+            Tour t = TourManager.getPlayerTour(p);
+            if (t != null)
             {
-                t = tours.get(tourPlayers.get(p.getName()));
                 t.removeTourist(p);
             }
-
             t = new Tour(p);
-            tours.put(t.getTourName(), t);
+            TourManager.addTour(t);
+            TourManager.setTourPlayer(p, t);
             t.tourNotify(green + "Tour started!");
             Bukkit.broadcastMessage(green + "Tour starting soon with " + aqua + p.getName());
             Bukkit.broadcastMessage(green + "Enter " + yellow + "/tour join " + p.getName() + green + " to join in!");
-            tourPlayers.put(p.getName(), t.getTourName());
         }
         else
         {
@@ -155,18 +142,16 @@ public class CommandMethods
 
     public static void tourStop(Player p)
     {
-        if (tours.containsKey(p.getName()))
+        Tour t = TourManager.getPlayerTour(p);
+        if (t != null)
         {
-            Tour t = tours.get(p.getName());
-            t.tourNotify(yellow + "Tour has ended!");
-            t.tourClear();
-            tourPlayers.remove(p.getName());
+            t.forceCloseTour(yellow + "Tour has ended!");
         }
     }
 
     public static void tourHat(Player p)
     {
-        if (tours.containsKey(p.getName()))
+        if (TourManager.hasTour(p.getName()))
         {
             if (!p.getItemInHand().getType().equals(Material.AIR))
             {
@@ -187,18 +172,18 @@ public class CommandMethods
 
     public static void tourList(Player p)
     {
-        if (tours.containsKey(p.getName()))
+        Tour t = TourManager.getTour(p.getName());
+        if (t != null)
         {
-            Tour t = tours.get(p.getName());
             p.sendMessage(yellow + t.getTouristList().toString());
         }
     }
 
     public static void userTP(Player p)
     {
-        if (tourPlayers.containsKey(p.getName()))
+        Tour t = TourManager.getPlayerTour(p);
+        if (t != null)
         {
-            Tour t = tours.get(tourPlayers.get(p.getName()));
             t.teleportToLeader(p);
         }
         else
@@ -209,19 +194,22 @@ public class CommandMethods
 
     public static void tourTp(Player p, String s)
     {
-        if (tourPlayers.containsKey(p.getName()))
+        Tour t = TourManager.getPlayerTour(p);
+        if (t != null)
         {
-            Tour t = tours.get(tourPlayers.get(p.getName()));
             t.teleportPlayer(p, s);
         }
     }
 
     public static void tourTpa(Player p)
     {
-        if (tours.containsKey(p.getName()))
+        if (TourManager.hasTour(p.getName()))
         {
-            Tour t = tours.get(p.getName());
-            t.teleportAll(p);
+            Tour t = TourManager.getTour(p.getName());
+            if (t != null)
+            {
+                t.teleportAll(p);
+            }
         }
     }
 

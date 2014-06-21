@@ -11,6 +11,7 @@ import static com.mcmiddleearth.tours.utils.Colors.gray;
 /**
  * @author dags_ <dags@dags.me>
  */
+
 public class TourCommands implements CommandExecutor
 {
 
@@ -120,24 +121,28 @@ public class TourCommands implements CommandExecutor
                     return nope(p);
                 }
             }
-            if (c.equalsIgnoreCase("tourtp") || c.equalsIgnoreCase("ttp"))
+            else if (c.equalsIgnoreCase("tourtp") || c.equalsIgnoreCase("ttp"))
             {
-                if (p.hasPermission("Tours.cmd.ranger"))
+                if (a.length == 0)
                 {
-                    if (a.length == 1)
+                    if (p.hasPermission("Tours.cmd.user"))
+                    {
+                        CommandMethods.userTP(p);
+                        return true;
+                    }
+                    return nope(p);
+                }
+                else if (a.length == 1)
+                {
+                    if (p.hasPermission("Tours.cmd.ranger"))
                     {
                         CommandMethods.tourTp(p, a[0]);
                         return true;
                     }
-                    p.sendMessage(gray + "/ttp <Player>");
-                    return true;
+                    return nope(p);
                 }
-                else if (p.hasPermission("Tours.cmd.user"))
-                {
-                    CommandMethods.userTP(p);
-                    return true;
-                }
-                return nope(p);
+                p.sendMessage(gray + "/ttp <Player>");
+                return true;
             }
             else if (c.equalsIgnoreCase("tourtpa") || c.equalsIgnoreCase("ttpa"))
             {

@@ -10,7 +10,7 @@ import java.io.File;
 /**
  * @author dags_ <dags@dags.me>
  */
-public class PlayerTracker
+public final class PlayerTracker
 {
 
     private final String file = "newplayers.yml";

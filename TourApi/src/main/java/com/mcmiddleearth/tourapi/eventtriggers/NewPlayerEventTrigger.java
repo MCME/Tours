@@ -3,8 +3,6 @@ package com.mcmiddleearth.tourapi.eventtriggers;
 import com.mcmiddleearth.tourapi.TourApi;
 import com.mcmiddleearth.tourapi.events.NewPlayerJoinEvent;
 import com.mcmiddleearth.tourapi.events.NewPlayerPassEvent;
-import com.mcmiddleearth.tourapi.events.TourEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
@@ -19,7 +17,7 @@ import org.bukkit.plugin.Plugin;
  * @author dags_ <dags@dags.me>
  */
 
-public class NewPlayerEventTrigger implements Listener
+public final class NewPlayerEventTrigger implements Listener
 {
 
     private final String world;
@@ -40,7 +38,7 @@ public class NewPlayerEventTrigger implements Listener
         {
             NewPlayerJoinEvent npj = new NewPlayerJoinEvent(p);
             TourApi.getPlayerTracker().addNewPlayer(p, npj.getDate(), npj.getTime());
-            callEvent(npj);
+            TourApi.callTourEvent(npj);
         }
     }
 
@@ -52,7 +50,7 @@ public class NewPlayerEventTrigger implements Listener
             if (TourApi.isTrackingPlayer(e.getPlayer()))
             {
                 TourApi.getPlayerTracker().removePlayer(e.getPlayer());
-                callEvent(new NewPlayerPassEvent(e.getPlayer(), welcome));
+                TourApi.callTourEvent(new NewPlayerPassEvent(e.getPlayer(), welcome));
             }
         }
     }
@@ -67,11 +65,6 @@ public class NewPlayerEventTrigger implements Listener
     public void onNewPlayerJoin(NewPlayerJoinEvent e)
     {
 
-    }
-
-    private void callEvent(TourEvent te)
-    {
-        Bukkit.getPluginManager().callEvent(te.toEvent());
     }
 
 }

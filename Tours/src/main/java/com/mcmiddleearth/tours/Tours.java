@@ -20,21 +20,17 @@ import com.mcmiddleearth.tourapi.TourApi;
 import com.mcmiddleearth.tours.commands.TourCommands;
 import com.mcmiddleearth.tours.listeners.ChatListener;
 import com.mcmiddleearth.tours.listeners.PlayerListener;
-import com.mcmiddleearth.tours.tour.Tour;
+import com.mcmiddleearth.tours.tour.TourManager;
 import com.mcmiddleearth.tours.utils.Colors;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.HashMap;
-
 /**
  * @author dags_ <dags@dags.me>
  */
+
 public class Tours extends JavaPlugin
 {
-
-    public static final HashMap<String, Tour> tours = new HashMap<String, Tour>();
-    public static final HashMap<String, String> tourPlayers = new HashMap<String, String>();
 
     private static Tours instance;
     private static boolean tourChat;
@@ -66,8 +62,7 @@ public class Tours extends JavaPlugin
     @Override
     public void onDisable()
     {
-        tours.clear();
-        tourPlayers.clear();
+        TourManager.clear();
     }
 
     private void setupConfig()

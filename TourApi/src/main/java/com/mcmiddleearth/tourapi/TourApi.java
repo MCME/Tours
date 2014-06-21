@@ -1,7 +1,9 @@
 package com.mcmiddleearth.tourapi;
 
+import com.mcmiddleearth.tourapi.events.TourEvent;
 import com.mcmiddleearth.tourapi.tracker.PlayerTracker;
 import com.mcmiddleearth.tourapi.utils.SaveTask;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -113,6 +115,11 @@ public final class TourApi
             SaveTask st = new SaveTask(c, getDataFolder(), fileName);
             st.runTaskAsynchronously(getOwner());
         }
+    }
+
+    public static void callTourEvent(TourEvent e)
+    {
+        Bukkit.getPluginManager().callEvent(e.toEvent());
     }
 
 }

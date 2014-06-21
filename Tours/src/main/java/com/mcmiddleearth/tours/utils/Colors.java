@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 /**
  * @author dags_ <dags@dags.me>
  */
+
 public class Colors
 {
 
