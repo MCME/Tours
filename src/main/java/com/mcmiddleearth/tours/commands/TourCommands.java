@@ -11,7 +11,6 @@ import static com.mcmiddleearth.tours.Tours.tours;
 import org.bukkit.Bukkit;
 
 /**
- *
  * @author dags_ <dags@dags.me>
  */
 public class TourCommands implements CommandExecutor

@@ -1,7 +1,9 @@
 name: Tours
 main: com.mcmiddleearth.tours.Tours
-version: 2.5.0
+version: ${project.version}
 author: dags_
+authors: []
+website: ${project.url}
 
 commands:
    tour:
@@ -39,17 +41,19 @@ permissions:
     children:
       Tours.user: true
       Tours.cmd.ranger: true
+      Tours.notify.newplayer: true
+      Tours.notify.request: true
   Tours.cmd.user:
     description: User permissions.
     default: true
   Tours.cmd.ranger:
     description: Ranger permissions.
     default: op
-  Tours.user:
+  Tours.notify.newplayer:
     description: User permissions.
-    default: true
-  Tours.ranger:
-    description: Ranger permissions.
+    default: op
+  Tours.notify.request:
+    description: User permissions.
     default: op
   Tours.admin:
     description: Admin permissions.

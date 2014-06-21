@@ -1,5 +1,7 @@
 package com.mcmiddleearth.tours.listeners;
 
+import com.mcmiddleearth.tours.Tours;
+import com.mcmiddleearth.tours.api.NewPlayerEvent;
 import com.mcmiddleearth.tours.tour.Tour;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
@@ -14,33 +16,34 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import static com.mcmiddleearth.tours.Tours.tourPlayers;
 import static com.mcmiddleearth.tours.Tours.tours;
 import static com.mcmiddleearth.tours.utils.Colors.*;
+
 /**
- *
  * @author dags_ <dags@dags.me>
  */
 public class PlayerListener implements Listener
 {
 
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onNewPlayer(NewPlayerEvent e)
+    {
+        Tours.getPlayerTracker().removePlayer(e.getPlayer());
+
+        String msg = lPurple + e.getPlayer().getName() + dPurple + " has just joined the server, give 'em a hug!";
+        Bukkit.getServer().broadcast(msg, "Tours.notify.newplayer");
+    }
+
     @EventHandler(priority = EventPriority.MONITOR)
     public void playerJoin(PlayerJoinEvent e)
     {
         Player p = e.getPlayer();
-
-        if (!(p.hasPlayedBefore()))
+        if (!p.hasPlayedBefore())
         {
-            for (Player q : Bukkit.getOnlinePlayers())
-            {
-                if (q.hasPermission("Tours.ranger"))
-                {
-                    q.sendMessage(lPurple + p.getName() + dPurple + " is a newbie to the server, give 'em a hug!");
-                }
-            }
+            Tours.getPlayerTracker().addNewPlayer(p);
+            return;
         }
-
-        if (tours.size() == 0)
+        if (Tours.getPlayerTracker().isTrackingPlayer(p))
         {
-            p.sendMessage(yellow + "There are no tours running right now.");
-            p.sendMessage(yellow + "See " + green + "/tour help" + yellow + " for more info!");
+            return;
         }
         if (tours.size() > 0)
         {
@@ -91,7 +94,6 @@ public class PlayerListener implements Listener
             return;
         }
         t.tourNotify(gray + "Your guide has left, the tour has ended!");
-
         for (String s : t.getTouristList())
         {
             if (tourPlayers.containsKey(s))
@@ -99,7 +101,6 @@ public class PlayerListener implements Listener
                 tourPlayers.remove(s);
             }
         }
-
         t.tourClear();
         if (p.getInventory().getHelmet() != null)
         {
@@ -119,4 +120,5 @@ public class PlayerListener implements Listener
         t.removeTourist(p);
         tourPlayers.remove(p.getName());
     }
+
 }

@@ -6,8 +6,8 @@ import org.bukkit.ChatColor;
 /**
  * @author dags_ <dags@dags.me>
  */
-
-public class Colors {
+public class Colors
+{
 
     public final static String aqua = ChatColor.DARK_AQUA.toString();
     public final static String dGray = ChatColor.GRAY.toString();
@@ -28,9 +28,14 @@ public class Colors {
         catch (IllegalArgumentException e)
         {
             col = ChatColor.WHITE.toString();
-            Bukkit.getLogger().info("[Tours] '" + s +  "' is an invalid color! Defaulting to WHITE.");
+            Bukkit.getLogger().info("[Tours] '" + s + "' is an invalid color! Defaulting to WHITE.");
         }
         return col;
+    }
+
+    public static String translate(String s)
+    {
+        return ChatColor.translateAlternateColorCodes('&', s);
     }
 
 }

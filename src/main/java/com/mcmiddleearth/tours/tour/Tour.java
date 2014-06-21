@@ -15,28 +15,28 @@ import static com.mcmiddleearth.tours.utils.Colors.*;
 /**
  * @author dags_ <dags@dags.me>
  */
-
 public class Tour
 {
+
     private String leader;
     private String name;
     private List<String> tourists;
 
     public Tour(Player p)
     {
-        this.leader = p.getName();
-        this.name = this.leader;
-        this.tourists = new ArrayList<String>();
-        this.tourists.add(p.getName());
+        leader = p.getName();
+        name = leader;
+        tourists = new ArrayList<String>();
+        tourists.add(p.getName());
     }
 
     public void addTourist(Player p)
     {
-        if (!this.tourists.contains(p.getName()))
+        if (!tourists.contains(p.getName()))
         {
-            this.tourists.add(p.getName());
-            String alert = yellow + "Everybody welcome " + green + p.getName() + yellow + " to the tour!";
-            this.tourNotify(alert);
+            tourists.add(p.getName());
+            tourNotify(yellow + "Everybody welcome " + green + p.getName() + yellow + " to the tour!");
+            p.sendMessage(yellow + "For the best experience, join " + aqua + leader + yellow + " in TeamSpeak!");
         }
         else
         {
@@ -46,12 +46,12 @@ public class Tour
 
     public void removeTourist(Player p)
     {
-        if (this.tourists.contains(p.getName()))
+        if (tourists.contains(p.getName()))
         {
-            this.tourists.remove(p.getName());
+            tourists.remove(p.getName());
 
             String alert = dGray + p.getName() + gray + " left the tour.";
-            this.tourNotify(alert);
+            tourNotify(alert);
             p.sendMessage(gray + "You left the tour!");
         }
         else
@@ -62,24 +62,24 @@ public class Tour
 
     public String getTourName()
     {
-        return this.name;
+        return name;
     }
 
     public List<String> getTouristList()
     {
-        return this.tourists;
+        return tourists;
     }
 
     public List<Player> getTourists()
     {
         List<Player> players = new ArrayList<Player>();
 
-        for (String s : this.tourists)
+        for (String s : tourists)
         {
             OfflinePlayer op = Bukkit.getOfflinePlayer(s);
             if (op.isOnline())
             {
-                players.add((Player) op);
+                players.add(op.getPlayer());
             }
         }
 
@@ -102,32 +102,32 @@ public class Tour
             message = Tours.userChatColor + chat[1] + reset;
         }
 
-        for (String s : this.tourists)
+        for (String s : tourists)
         {
             OfflinePlayer op = Bukkit.getOfflinePlayer(s);
             if (op.isOnline())
             {
-                ((Player) op).sendMessage(chat[0] + prefix + message);
+                op.getPlayer().sendMessage(chat[0] + prefix + message);
             }
         }
     }
 
     public void tourNotify(String alert)
     {
-        for (String s : this.tourists)
+        for (String s : tourists)
         {
             OfflinePlayer op = Bukkit.getOfflinePlayer(s);
             if (op.isOnline())
             {
-                ((Player) op).sendMessage(alert);
+                op.getPlayer().sendMessage(alert);
             }
         }
     }
 
     public void tourClear()
     {
-        this.tourists.clear();
-        tours.remove(this.getTourName());
+        tourists.clear();
+        tours.remove(getTourName());
     }
 
     public void teleportToLeader(Player p)
@@ -144,12 +144,12 @@ public class Tour
     {
         Player target = p;
 
-        for (String st : this.tourists)
+        for (String st : tourists)
         {
             if (st.toLowerCase().contains(s.toLowerCase()))
             {
                 OfflinePlayer op = Bukkit.getOfflinePlayer(st);
-                if (op.isOnline() && !st.equals(this.leader))
+                if (op.isOnline() && !st.equals(leader))
                 {
                     target = (Player) op;
                     break;
@@ -171,11 +171,11 @@ public class Tour
 
     public void teleportAll(Player p)
     {
-        if (!this.tourists.isEmpty())
+        if (!tourists.isEmpty())
         {
             Location l = p.getLocation();
 
-            for (String s : this.tourists)
+            for (String s : tourists)
             {
                 OfflinePlayer op = Bukkit.getOfflinePlayer(s);
                 {

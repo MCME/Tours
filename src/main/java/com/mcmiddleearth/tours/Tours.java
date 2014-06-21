@@ -12,39 +12,53 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see http://www.gnu.org/licenses/.
  */
 package com.mcmiddleearth.tours;
 
 import com.mcmiddleearth.tours.commands.TourCommands;
 import com.mcmiddleearth.tours.listeners.ChatListener;
+import com.mcmiddleearth.tours.listeners.NewPlayerEventTrigger;
 import com.mcmiddleearth.tours.listeners.PlayerListener;
 import com.mcmiddleearth.tours.tour.Tour;
 import com.mcmiddleearth.tours.utils.Colors;
+import com.mcmiddleearth.tours.utils.PlayerTracker;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 
 /**
- *
  * @author dags_ <dags@dags.me>
  */
 public class Tours extends JavaPlugin
 {
 
-    public static HashMap<String, Tour> tours = new HashMap<String, Tour>();
-    public static HashMap<String, String> tourPlayers = new HashMap<String, String>();
+    public static final HashMap<String, Tour> tours = new HashMap<String, Tour>();
+    public static final HashMap<String, String> tourPlayers = new HashMap<String, String>();
+    private PlayerTracker playerTracker;
 
+    private static Tours instance;
     private static boolean tourChat;
     public static String userChatColor;
     public static String rangerChatColor;
+
+    public Tours()
+    {
+        instance = this;
+    }
+
+    public static Tours inst()
+    {
+        return instance;
+    }
 
     @Override
     public void onEnable()
     {
         setupConfig();
         registerEvents();
+        playerTracker = new PlayerTracker();
     }
 
     @Override
@@ -68,6 +82,7 @@ public class Tours extends JavaPlugin
     {
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new PlayerListener(), this);
+        pm.registerEvents(new NewPlayerEventTrigger(), this);
         if (tourChat)
         {
             pm.registerEvents(new ChatListener(), this);
@@ -78,6 +93,11 @@ public class Tours extends JavaPlugin
         getCommand("tourtp").setExecutor(tourCommands);
         getCommand("ttpa").setExecutor(tourCommands);
         getCommand("ttp").setExecutor(tourCommands);
+    }
+
+    public static PlayerTracker getPlayerTracker()
+    {
+        return inst().playerTracker;
     }
 
 }

@@ -5,8 +5,6 @@ Tour management plugin.<br/>
 <i>Allows a 'guide' to create a temporary group that other players can join.<br/>
 Guides then have access to teleportation commands that can only be used on members of that group.<br/></i>
 <br/>
-<b>Automated Builds</b><br/>
-http://ci.dags.me/job/Tours/<br/>
 
 ==========
 <b>Permissions</b><br/>
