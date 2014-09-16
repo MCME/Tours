@@ -39,16 +39,7 @@ public class TourCommands implements CommandExecutor
                     }
                     return nope(p);
                 }
-                if (a[0].equalsIgnoreCase("request"))
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
-                        CommandMethods.tourRequest(p);
-                        return true;
-                    }
-                    return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("join"))
+                if (a[0].equalsIgnoreCase("join"))
                 {
                     if (p.hasPermission("Tours.cmd.user"))
                     {
