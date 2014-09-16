@@ -23,7 +23,7 @@ public class CommandMethods
         if (TourManager.getNumberOfTours() == 0)
         {
             p.sendMessage(yellow + "There are no tours running right now.");
-            p.sendMessage(green + "Online Rangers: ");
+            p.sendMessage(green + "Online Guides: ");
             for (Player q : Bukkit.getOnlinePlayers())
             {
                 if (q.hasPermission("Tours.ranger") && !q.hasPermission("Tours.admin"))
@@ -100,7 +100,7 @@ public class CommandMethods
         sb.setLength(0);
         sb.append(gray).append("/tour - check for tour information").append("\n");
         sb.append(gray).append("/tour request - submit a request for a tour").append("\n");
-        sb.append(gray).append("/tour join <RangerName> - join Ranger's tour").append("\n");
+        sb.append(gray).append("/tour join <RangerName> - join Guide's tour").append("\n");
         sb.append(gray).append("/tour leave - leave current tour").append("\n");
         if (!p.hasPermission("Tours.Ranger"))
         {
