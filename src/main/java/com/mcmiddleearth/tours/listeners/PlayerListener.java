@@ -23,15 +23,6 @@ import static com.mcmiddleearth.tours.utils.Colors.*;
 public class PlayerListener implements Listener
 {
 
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void onNewPlayer(NewPlayerEvent e)
-    {
-        Tours.getPlayerTracker().removePlayer(e.getPlayer());
-
-        String msg = lPurple + e.getPlayer().getName() + dPurple + " has just joined the server, give 'em a hug!";
-        Bukkit.getServer().broadcast(msg, "Tours.notify.newplayer");
-    }
-
     @EventHandler(priority = EventPriority.MONITOR)
     public void playerJoin(PlayerJoinEvent e)
     {
