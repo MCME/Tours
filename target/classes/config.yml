@@ -1,7 +1,0 @@
-NewPlayerSettings:
-  NewPlayerWorld: World
-  NewPlayerWelcome: '&5[%DATE%-%TIME%] &dCongratulations and welcome to the server!'
-ChatSettings:
-  TourChat: true
-  UserChat: WHITE
-  RangerChat: AQUA
