@@ -14,7 +14,6 @@ All users with '<b>Tours.user</b>' permission node can:
 - '<b>/tour help</b>' to find info on Tours commands.
 - '<b>/tour join \<tourname\></b>' to join a currently running tour.
 - '<b>/tour leave</b>' to leave the currently running tour.
-- '<b>/tour request</b>' sends an alert to any Rangers online that use is looking for a tour.
 - '<b>/ttp</b>' teleports the user to their tour guide.
 
 Users with the '<b>Tours.ranger</b>' permission node can:
