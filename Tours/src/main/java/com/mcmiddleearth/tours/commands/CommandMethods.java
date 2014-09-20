@@ -100,7 +100,7 @@ public class CommandMethods
         sb.setLength(0);
         sb.append(gray).append("/tour - check for tour information").append("\n");
         sb.append(gray).append("/tour request - submit a request for a tour").append("\n");
-        sb.append(gray).append("/tour join <RangerName> - join Guide's tour").append("\n");
+        sb.append(gray).append("/tour join <GuideName> - join Guide's tour").append("\n");
         sb.append(gray).append("/tour leave - leave current tour").append("\n");
         if (!p.hasPermission("Tours.Ranger"))
         {
