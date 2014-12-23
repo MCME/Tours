@@ -24,10 +24,10 @@ public class NewPlayerEventTrigger implements Listener
     {
         Configuration c = Tours.inst().getConfig();
         world = c.getString("NewPlayerSettings.NewPlayerWorld");
-        welcome = Colors.translate(c.getString("NewPlayerSettings.NewPlayerWelcome"));
+        welcome = c.getString("NewPlayerSettings.NewPlayerWelcome"); //no function found, no javadoc
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    /*@EventHandler(priority = EventPriority.MONITOR) removed function, not needed for MCME
     public void onWorldChange(PlayerChangedWorldEvent e)
     {
         if (!e.getPlayer().getWorld().getName().equalsIgnoreCase(world) && e.getFrom().getName().equalsIgnoreCase(world))
@@ -38,7 +38,8 @@ public class NewPlayerEventTrigger implements Listener
             }
         }
     }
-
+    */
+    
     @EventHandler(priority = EventPriority.MONITOR)
     public void onNewPlayerMonitor(NewPlayerEvent e)
     {

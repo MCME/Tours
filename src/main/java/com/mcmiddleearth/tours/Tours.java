@@ -16,13 +16,12 @@
  */
 package com.mcmiddleearth.tours;
 
+import com.mcmiddleearth.tourapi.TourApi;
 import com.mcmiddleearth.tours.commands.TourCommands;
 import com.mcmiddleearth.tours.listeners.ChatListener;
-import com.mcmiddleearth.tours.listeners.NewPlayerEventTrigger;
 import com.mcmiddleearth.tours.listeners.PlayerListener;
 import com.mcmiddleearth.tours.tour.Tour;
 import com.mcmiddleearth.tours.utils.Colors;
-import com.mcmiddleearth.tours.utils.PlayerTracker;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -36,7 +35,6 @@ public class Tours extends JavaPlugin
 
     public static final HashMap<String, Tour> tours = new HashMap<String, Tour>();
     public static final HashMap<String, String> tourPlayers = new HashMap<String, String>();
-    private PlayerTracker playerTracker;
 
     private static Tours instance;
     private static boolean tourChat;
@@ -50,6 +48,10 @@ public class Tours extends JavaPlugin
 
     public static Tours inst()
     {
+        if (instance == null)
+        {
+            instance = new Tours();
+        }
         return instance;
     }
 
@@ -58,7 +60,7 @@ public class Tours extends JavaPlugin
     {
         setupConfig();
         registerEvents();
-        playerTracker = new PlayerTracker();
+        TourApi.setApiCore(this);
     }
 
     @Override
@@ -72,7 +74,6 @@ public class Tours extends JavaPlugin
     {
         getConfig().options().copyDefaults(true);
         saveConfig();
-
         tourChat = getConfig().getBoolean("ChatSettings.TourChat");
         userChatColor = Colors.getCol(getConfig().getString("ChatSettings.UserChat"));
         rangerChatColor = Colors.getCol(getConfig().getString("ChatSettings.RangerChat"));
@@ -82,7 +83,6 @@ public class Tours extends JavaPlugin
     {
         PluginManager pm = this.getServer().getPluginManager();
         pm.registerEvents(new PlayerListener(), this);
-        pm.registerEvents(new NewPlayerEventTrigger(), this);
         if (tourChat)
         {
             pm.registerEvents(new ChatListener(), this);
@@ -95,9 +95,5 @@ public class Tours extends JavaPlugin
         getCommand("ttp").setExecutor(tourCommands);
     }
 
-    public static PlayerTracker getPlayerTracker()
-    {
-        return inst().playerTracker;
-    }
-
 }
+

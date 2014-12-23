@@ -1,16 +1,15 @@
 package com.mcmiddleearth.tours.tour;
 
 import com.mcmiddleearth.tours.Tours;
+import static com.mcmiddleearth.tours.Tours.tourPlayers;
+import static com.mcmiddleearth.tours.Tours.tours;
+import static com.mcmiddleearth.tours.utils.Colors.*;
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.mcmiddleearth.tours.Tours.tours;
-import static com.mcmiddleearth.tours.utils.Colors.*;
 
 /**
  * @author dags_ <dags@dags.me>
@@ -21,6 +20,7 @@ public class Tour
     private String leader;
     private String name;
     private List<String> tourists;
+    public List<String> inChat;
 
     public Tour(Player p)
     {
@@ -28,6 +28,8 @@ public class Tour
         name = leader;
         tourists = new ArrayList<String>();
         tourists.add(p.getName());
+        inChat = new ArrayList<String>();
+        inChat.add(p.getName());
     }
 
     public void addTourist(Player p)
@@ -35,6 +37,7 @@ public class Tour
         if (!tourists.contains(p.getName()))
         {
             tourists.add(p.getName());
+            inChat.add(p.getName());
             tourNotify(yellow + "Everybody welcome " + green + p.getName() + yellow + " to the tour!");
             p.sendMessage(yellow + "For the best experience, join " + aqua + leader + yellow + " in TeamSpeak!");
         }
@@ -49,6 +52,7 @@ public class Tour
         if (tourists.contains(p.getName()))
         {
             tourists.remove(p.getName());
+            inChat.remove(p.getName());
 
             String alert = dGray + p.getName() + gray + " left the tour.";
             tourNotify(alert);
@@ -85,7 +89,23 @@ public class Tour
 
         return players;
     }
+    
+    public List<Player> getInChat()
+    {
+        List<Player> players = new ArrayList<Player>();
 
+        for (String s : inChat)
+        {
+            OfflinePlayer op = Bukkit.getOfflinePlayer(s);
+            if (op.isOnline())
+            {
+                players.add(op.getPlayer());
+            }
+        }
+
+        return players;
+    }
+    
     public void tourChat(Player p, String chat[])
     {
         String prefix;
@@ -126,6 +146,9 @@ public class Tour
 
     public void tourClear()
     {
+        for (String p : tourists){
+            tourPlayers.remove(p);
+        }
         tourists.clear();
         tours.remove(getTourName());
     }
