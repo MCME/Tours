@@ -1,17 +1,22 @@
 package com.mcmiddleearth.tours.commands;
 
+import static com.mcmiddleearth.tours.utils.Colors.gray;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
-
-import static com.mcmiddleearth.tours.utils.Colors.gray;
+import org.bukkit.plugin.Plugin;
 
 /**
  * @author dags_ <dags@dags.me>
  */
-public class TourCommands implements CommandExecutor
+public class TourCommands implements TabExecutor
 {
 
     private static ChatColor error = ChatColor.GRAY;
@@ -119,6 +124,15 @@ public class TourCommands implements CommandExecutor
                     }
                     return nope(p);
                 }
+                else if (a[0].equalsIgnoreCase("chat"))
+                {
+                    if (p.hasPermission("Tours.cmd.user"))
+                    {
+                        CommandMethods.tourChatToggle(p);
+                        return true;
+                    }
+                    return nope(p);
+                }
             }
             if (c.equalsIgnoreCase("tourtp") || c.equalsIgnoreCase("ttp"))
             {
@@ -151,13 +165,7 @@ public class TourCommands implements CommandExecutor
                 }
                 return nope(p);
             }
-            else if (c.equalsIgnoreCase("chat"))
-            {
-                if (p.hasPermission("Tours.cmd.user"))
-                {
-                    
-                }
-            }
+            
         }
         return false;
     }
@@ -166,6 +174,29 @@ public class TourCommands implements CommandExecutor
     {
         p.sendMessage(error + "Sorry you do not have permission to do that!");
         return true;
+    }
+    
+    @Override
+    public List<String> onTabComplete (CommandSender sender, Command command, String alias, String[] args)
+    {
+        if (command.getName().equalsIgnoreCase("tour"))
+        {
+            if (args.length == 1)
+            {
+                List<String> tabs = new ArrayList<String> ();
+                if (sender.hasPermission("Tours.cmd.user"))
+                {
+                    tabs = new ArrayList<String> (Arrays.asList(new String[] {"join", "leave", "help", "chat"}));
+                }
+                if (sender.hasPermission("Tours.cmd.ranger"))
+                {
+                    tabs.addAll(Arrays.asList(new String[] {"start", "stop", "list", "hat"}));
+                }
+                return tabs;
+            }
+        }
+        return null;
+        
     }
 
 }

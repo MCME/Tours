@@ -1,16 +1,15 @@
 package com.mcmiddleearth.tours.tour;
 
 import com.mcmiddleearth.tours.Tours;
+import static com.mcmiddleearth.tours.Tours.tourPlayers;
+import static com.mcmiddleearth.tours.Tours.tours;
+import static com.mcmiddleearth.tours.utils.Colors.*;
+import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.mcmiddleearth.tours.Tours.tours;
-import static com.mcmiddleearth.tours.utils.Colors.*;
 
 /**
  * @author dags_ <dags@dags.me>
@@ -21,7 +20,7 @@ public class Tour
     private String leader;
     private String name;
     private List<String> tourists;
-    private List<String> inChat;
+    public List<String> inChat;
 
     public Tour(Player p)
     {
@@ -30,6 +29,7 @@ public class Tour
         tourists = new ArrayList<String>();
         tourists.add(p.getName());
         inChat = new ArrayList<String>();
+        inChat.add(p.getName());
     }
 
     public void addTourist(Player p)
@@ -105,7 +105,7 @@ public class Tour
 
         return players;
     }
-
+    
     public void tourChat(Player p, String chat[])
     {
         String prefix;
@@ -146,6 +146,9 @@ public class Tour
 
     public void tourClear()
     {
+        for (String p : tourists){
+            tourPlayers.remove(p);
+        }
         tourists.clear();
         tours.remove(getTourName());
     }

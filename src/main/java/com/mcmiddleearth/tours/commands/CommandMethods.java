@@ -1,14 +1,14 @@
 package com.mcmiddleearth.tours.commands;
 
+import static com.mcmiddleearth.tours.Tours.tourPlayers;
+import static com.mcmiddleearth.tours.Tours.tours;
 import com.mcmiddleearth.tours.tour.Tour;
+import static com.mcmiddleearth.tours.utils.Colors.*;
+import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
-import static com.mcmiddleearth.tours.Tours.tourPlayers;
-import static com.mcmiddleearth.tours.Tours.tours;
-import static com.mcmiddleearth.tours.utils.Colors.*;
 
 /**
  * @author dags_ <dags@dags.me>
@@ -222,6 +222,25 @@ public class CommandMethods
         {
             Tour t = tours.get(p.getName());
             t.teleportAll(p);
+        }
+    }
+    
+    public static void tourChatToggle(Player p)
+    {
+        if (tourPlayers.containsKey(p.getName()))
+        {
+            Tour t = tours.get(tourPlayers.get(p.getName()));
+            
+            if (t.getInChat().contains(p))
+            {
+                t.inChat.remove(p.getName());
+                p.sendMessage(yellow + "You are now in public chat! Nobody else in the tour will hear you.");
+            }
+            else
+            {
+                t.inChat.add(p.getName());
+                p.sendMessage(yellow + "You are now in tour chat! People outside the tour cannot hear you.");
+            }
         }
     }
 
