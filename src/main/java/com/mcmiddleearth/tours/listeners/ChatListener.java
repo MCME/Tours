@@ -23,16 +23,23 @@ public class ChatListener implements Listener
 
         if (tourPlayers.containsKey(p.getName()))
         {
-            String[] chat = new String[2];
-            chat[0] = e.getFormat().replace(e.getMessage(), "").replace("%1$s", p.getDisplayName()).replace("%2$s", "");
-            chat[1] = e.getMessage();
-
-            Tour t = tours.get(tourPlayers.get(p.getName()));
-            e.getRecipients().removeAll(t.getTourists());
-
-            synchronized (this)
+            if (tours.get(tourPlayers.get(p.getName())).getInChat().contains(p))
             {
-                t.tourChat(p, chat);
+                String[] chat = new String[2];
+                chat[0] = e.getFormat().replace(e.getMessage(), "").replace("%1$s", p.getDisplayName()).replace("%2$s", "");
+                chat[1] = e.getMessage();
+
+                Tour t = tours.get(tourPlayers.get(p.getName()));
+                e.getRecipients().removeAll(t.getTourists());
+
+                synchronized (this)
+                {
+                    t.tourChat(p, chat);
+                }
+            }
+            else
+            {
+                
             }
         }
     }

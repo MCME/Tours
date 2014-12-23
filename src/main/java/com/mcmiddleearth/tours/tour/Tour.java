@@ -21,6 +21,7 @@ public class Tour
     private String leader;
     private String name;
     private List<String> tourists;
+    private List<String> inChat;
 
     public Tour(Player p)
     {
@@ -28,6 +29,7 @@ public class Tour
         name = leader;
         tourists = new ArrayList<String>();
         tourists.add(p.getName());
+        inChat = new ArrayList<String>();
     }
 
     public void addTourist(Player p)
@@ -35,6 +37,7 @@ public class Tour
         if (!tourists.contains(p.getName()))
         {
             tourists.add(p.getName());
+            inChat.add(p.getName());
             tourNotify(yellow + "Everybody welcome " + green + p.getName() + yellow + " to the tour!");
             p.sendMessage(yellow + "For the best experience, join " + aqua + leader + yellow + " in TeamSpeak!");
         }
@@ -49,6 +52,7 @@ public class Tour
         if (tourists.contains(p.getName()))
         {
             tourists.remove(p.getName());
+            inChat.remove(p.getName());
 
             String alert = dGray + p.getName() + gray + " left the tour.";
             tourNotify(alert);
@@ -75,6 +79,22 @@ public class Tour
         List<Player> players = new ArrayList<Player>();
 
         for (String s : tourists)
+        {
+            OfflinePlayer op = Bukkit.getOfflinePlayer(s);
+            if (op.isOnline())
+            {
+                players.add(op.getPlayer());
+            }
+        }
+
+        return players;
+    }
+    
+    public List<Player> getInChat()
+    {
+        List<Player> players = new ArrayList<Player>();
+
+        for (String s : inChat)
         {
             OfflinePlayer op = Bukkit.getOfflinePlayer(s);
             if (op.isOnline())

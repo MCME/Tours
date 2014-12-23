@@ -151,6 +151,13 @@ public class TourCommands implements CommandExecutor
                 }
                 return nope(p);
             }
+            else if (c.equalsIgnoreCase("chat"))
+            {
+                if (p.hasPermission("Tours.cmd.user"))
+                {
+                    
+                }
+            }
         }
         return false;
     }
