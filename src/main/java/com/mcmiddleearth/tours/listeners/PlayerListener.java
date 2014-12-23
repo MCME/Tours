@@ -1,7 +1,7 @@
 package com.mcmiddleearth.tours.listeners;
 
-import com.mcmiddleearth.tours.Tours;
-import com.mcmiddleearth.tours.api.NewPlayerEvent;
+import com.mcmiddleearth.tourapi.TourApi;
+import com.mcmiddleearth.tourapi.events.NewPlayerPassEvent;
 import com.mcmiddleearth.tours.tour.Tour;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
@@ -24,11 +24,9 @@ public class PlayerListener implements Listener
 {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void onNewPlayer(NewPlayerEvent e)
+    public void onNewPlayer(NewPlayerPassEvent e)
     {
-        Tours.getPlayerTracker().removePlayer(e.getPlayer());
-
-        String msg = lPurple + e.getPlayer().getName() + dPurple + " has just joined the server, give 'em a hug!";
+        String msg = lPurple + e.getPlayer().getName() + dPurple + " has just passed the New Player World!";
         Bukkit.getServer().broadcast(msg, "Tours.notify.newplayer");
     }
 
@@ -36,12 +34,7 @@ public class PlayerListener implements Listener
     public void playerJoin(PlayerJoinEvent e)
     {
         Player p = e.getPlayer();
-        if (!p.hasPlayedBefore())
-        {
-            Tours.getPlayerTracker().addNewPlayer(p);
-            return;
-        }
-        if (Tours.getPlayerTracker().isTrackingPlayer(p))
+        if (TourApi.isTrackingPlayer(p))
         {
             return;
         }

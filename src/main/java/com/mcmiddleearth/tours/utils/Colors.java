@@ -33,9 +33,4 @@ public class Colors
         return col;
     }
 
-    public static String translate(String s)
-    {
-        return ChatColor.translateAlternateColorCodes('&', s);
-    }
-
 }

@@ -159,9 +159,6 @@ public class CommandMethods
         {
             Tour t = tours.get(p.getName());
             t.tourNotify(yellow + "Tour has ended!");
-            for(String pname : t.getTouristList()){
-                tourPlayers.remove(pname);
-            }
             t.tourClear();
             tourPlayers.remove(p.getName());
         }
