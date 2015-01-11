@@ -43,7 +43,10 @@ public class NewPlayerEventTrigger implements Listener
     @EventHandler(priority = EventPriority.MONITOR)
     public void onNewPlayerMonitor(NewPlayerEvent e)
     {
-        e.getPlayer().sendMessage(e.getWelcomeMessage());
+        if (Tours.newPlayerWelcome)
+        {
+            e.getPlayer().sendMessage(e.getWelcomeMessage());
+        }
     }
 
 }

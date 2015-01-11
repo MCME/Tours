@@ -35,6 +35,7 @@ public class Tours extends JavaPlugin
 
     public static final HashMap<String, Tour> tours = new HashMap<String, Tour>();
     public static final HashMap<String, String> tourPlayers = new HashMap<String, String>();
+    public static boolean newPlayerWelcome;
 
     private static Tours instance;
     private static boolean tourChat;
@@ -75,6 +76,7 @@ public class Tours extends JavaPlugin
         getConfig().options().copyDefaults(true);
         saveConfig();
         tourChat = getConfig().getBoolean("ChatSettings.TourChat");
+        newPlayerWelcome = getConfig().getBoolean("NewPlayerSettings.Enabled");
         userChatColor = Colors.getCol(getConfig().getString("ChatSettings.UserChat"));
         rangerChatColor = Colors.getCol(getConfig().getString("ChatSettings.RangerChat"));
     }
