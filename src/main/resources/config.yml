@@ -1,4 +1,5 @@
 NewPlayerSettings:
+  Enabled: false
   NewPlayerWorld: World
   NewPlayerWelcome: '&5[%DATE%-%TIME%] &dCongratulations and welcome to the server!'
 ChatSettings:
