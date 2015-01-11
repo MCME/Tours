@@ -2,7 +2,7 @@ name: Tours
 main: com.mcmiddleearth.tours.Tours
 version: ${project.version}
 author: dags_
-authors: []
+authors: [dags_, DonoA]
 website: ${project.url}
 
 commands:
