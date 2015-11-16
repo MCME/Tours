@@ -6,6 +6,10 @@ Tour management plugin.<br/>
 Guides then have access to teleportation commands that can only be used on members of that group.<br/></i>
 <br/>
 
+Current authors: DonoA
+
+Author: Dags
+
 ==========
 <b>Permissions</b><br/>
 <br/>
