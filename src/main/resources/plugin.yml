@@ -39,7 +39,6 @@ permissions:
   Tours.ranger:
     default: op
     children:
-      Tours.user: true
       Tours.cmd.ranger: true
       Tours.notify.newplayer: true
       Tours.notify.request: true
