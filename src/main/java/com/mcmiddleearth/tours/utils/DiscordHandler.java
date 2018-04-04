@@ -22,7 +22,7 @@ public class DiscordHandler {
 	private static void discordMessage(String message) 
 	{
 		DiscordSRV discordPlugin = DiscordSRV.getPlugin();
-		TextChannel channel = discordPlugin.getChannels().get(Tours.getDiscordChannel());
+		TextChannel channel = discordPlugin.getDestinationTextChannelForGameChannelName((Tours.getDiscordChannel()));
 		DiscordUtil.sendMessage(channel, message, 0, false);
 	}
 
