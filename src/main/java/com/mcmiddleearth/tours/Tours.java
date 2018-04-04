@@ -36,12 +36,12 @@ public class Tours extends JavaPlugin
     public static final HashMap<String, Tour> tours = new HashMap<String, Tour>();
     public static final HashMap<String, String> tourPlayers = new HashMap<String, String>();
     public static boolean newPlayerWelcome;
+    public static boolean discordMessage;
 
     private static Tours instance;
     private static boolean tourChat;
     public static String userChatColor;
     public static String rangerChatColor;
-    
     public static String discordChannel;
 
     public Tours()
@@ -64,8 +64,6 @@ public class Tours extends JavaPlugin
         setupConfig();
         registerEvents();
         TourApi.setApiCore(this);
-        
-        discordChannel = getConfig().getString("discord.channel");
     }
 
     @Override
@@ -83,6 +81,9 @@ public class Tours extends JavaPlugin
         newPlayerWelcome = getConfig().getBoolean("NewPlayerSettings.Enabled");
         userChatColor = Colors.getCol(getConfig().getString("ChatSettings.UserChat"));
         rangerChatColor = Colors.getCol(getConfig().getString("ChatSettings.RangerChat"));
+        discordMessage = getConfig().getBoolean("discord.enable");
+        discordChannel = getConfig().getString("discord.channel");
+        
     }
 
     private void registerEvents()
