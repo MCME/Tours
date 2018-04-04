@@ -13,12 +13,14 @@ import github.scarsz.discordsrv.util.DiscordUtil;
  */
 public class DiscordHandler {
 	
-	public static void tourStartDiscordMessage(Player p) {
+	public static void tourStartDiscordMessage(Player p) 
+	{
 		discordMessage("@everyone! \n :ringmcme: **" + p.getName() + "** is starting a tour! :ringmcme:" +
 				"\nTo join the tour type this in game chat: ```css\n/tour join " + p.getName() + "```");
 	}
 	
-	private static void discordMessage(String message) {
+	private static void discordMessage(String message) 
+	{
 		DiscordSRV discordPlugin = DiscordSRV.getPlugin();
 		TextChannel channel = discordPlugin.getChannels().get(Tours.getDiscordChannel());
 		DiscordUtil.sendMessage(channel, message, 0, false);

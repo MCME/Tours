@@ -2,6 +2,8 @@ package com.mcmiddleearth.tours.commands;
 
 import static com.mcmiddleearth.tours.Tours.tourPlayers;
 import static com.mcmiddleearth.tours.Tours.tours;
+
+import com.mcmiddleearth.tours.Tours;
 import com.mcmiddleearth.tours.tour.Tour;
 import com.mcmiddleearth.tours.utils.DiscordHandler;
 
@@ -147,7 +149,7 @@ public class CommandMethods
             Bukkit.broadcastMessage(green + "Tour starting soon with " + aqua + p.getName());
             Bukkit.broadcastMessage(green + "Enter " + yellow + "/tour join " + p.getName() + green + " to join in!");
             tourPlayers.put(p.getName(), t.getTourName());
-            DiscordHandler.tourStartDiscordMessage(p);
+            if (Tours.discordMessage) DiscordHandler.tourStartDiscordMessage(p);
         }
         else
         {
