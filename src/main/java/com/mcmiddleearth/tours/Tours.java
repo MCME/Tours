@@ -81,7 +81,7 @@ public class Tours extends JavaPlugin
         newPlayerWelcome = getConfig().getBoolean("NewPlayerSettings.Enabled");
         userChatColor = Colors.getCol(getConfig().getString("ChatSettings.UserChat"));
         rangerChatColor = Colors.getCol(getConfig().getString("ChatSettings.RangerChat"));
-        discordMessage = getConfig().getBoolean("discord.enable");
+        discordMessage = getConfig().getBoolean("discord.enabled");
         discordChannel = getConfig().getString("discord.channel");
         
     }
