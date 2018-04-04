@@ -41,6 +41,8 @@ public class Tours extends JavaPlugin
     private static boolean tourChat;
     public static String userChatColor;
     public static String rangerChatColor;
+    
+    public static String discordChannel;
 
     public Tours()
     {
@@ -62,6 +64,8 @@ public class Tours extends JavaPlugin
         setupConfig();
         registerEvents();
         TourApi.setApiCore(this);
+        
+        discordChannel = getConfig().getString("discord.channel");
     }
 
     @Override
@@ -95,6 +99,10 @@ public class Tours extends JavaPlugin
         getCommand("tourtp").setExecutor(tourCommands);
         getCommand("ttpa").setExecutor(tourCommands);
         getCommand("ttp").setExecutor(tourCommands);
+    }
+    
+    public static String getDiscordChannel() {
+    	return discordChannel;
     }
 
 }
