@@ -1,5 +1,4 @@
-Tours
-==========
+# Tours
 
 Tour management plugin.<br/>
 <i>Allows a 'guide' to create a temporary group that other players can join.<br/>
@@ -10,9 +9,7 @@ Current authors: DonoA
 
 Author: Dags
 
-==========
-<b>Permissions</b><br/>
-<br/>
+## <b>Permissions</b>
 All users with '<b>Tours.user</b>' permission node can:
 - '<b>/tour</b>' to find info on tours.
 - '<b>/tour help</b>' to find info on Tours commands.
@@ -30,16 +27,18 @@ Users with the '<b>Tours.ranger</b>' permission node can:
 - '<b>/ttp \<player\></b>' shortcut for tourtp.
 - '<b>/tourtpa</b>' teleports all players in tour group to user.
 - '<b>/ttpa</b>' shortcut for tourtpa.<br/>
+## <b>Discord</b>
 
-==========
+In **config.yml**, set `discord: enabled:` to `true` to enable Discord compatibility.  This requires [DiscordSVR](https://github.com/Scarsz/DiscordSRV/). To select a channel to broadcast messages in, set `discord: 
+channel:` to the name of the desired channel. Once enabled, the plugin will send a message to the specified channel whenever a Guide runs the **/tour start** command successfully.
 
-<b>Contributions</b> <br/>
+## <b>Contributions</b>
+
 Any contributions should - as best as possible - maintain the existing design paterns, conventions, and styles currently in place in this project.<br/>
 Deprecated or NMS code is to be avoided and subject to scrutiny.<br/>
 
-==========
+## <b>License</b>
 
-<b>License</b><br/>
 Tours is licensed under the GNU General Public License V3:<br/>
 http://www.gnu.org/copyleft/gpl.html<br/>
 <br/>

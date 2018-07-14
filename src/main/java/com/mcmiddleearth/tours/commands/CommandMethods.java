@@ -2,9 +2,12 @@ package com.mcmiddleearth.tours.commands;
 
 import static com.mcmiddleearth.tours.Tours.tourPlayers;
 import static com.mcmiddleearth.tours.Tours.tours;
+
+import com.mcmiddleearth.tours.Tours;
 import com.mcmiddleearth.tours.tour.Tour;
+import com.mcmiddleearth.tours.utils.DiscordHandler;
+
 import static com.mcmiddleearth.tours.utils.Colors.*;
-import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -146,6 +149,7 @@ public class CommandMethods
             Bukkit.broadcastMessage(green + "Tour starting soon with " + aqua + p.getName());
             Bukkit.broadcastMessage(green + "Enter " + yellow + "/tour join " + p.getName() + green + " to join in!");
             tourPlayers.put(p.getName(), t.getTourName());
+            if (Tours.discordMessage) DiscordHandler.tourStartDiscordMessage(p);
         }
         else
         {
@@ -164,7 +168,7 @@ public class CommandMethods
         }
     }
 
-    public static void tourHat(Player p)
+	public static void tourHat(Player p)
     {
         if (tours.containsKey(p.getName()))
         {

@@ -6,3 +6,6 @@ ChatSettings:
   TourChat: true
   UserChat: WHITE
   RangerChat: AQUA
+discord:
+  enabled: true
+  channel: global
