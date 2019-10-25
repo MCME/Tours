@@ -1,9 +1,10 @@
-name: Tours
+name: ${project.artifactId}
 main: com.mcmiddleearth.tours.Tours
 version: ${project.version}
 author: dags_
 authors: [dags_, DonoA]
 website: ${project.url}
+api-version: 1.13
 
 commands:
    tour:

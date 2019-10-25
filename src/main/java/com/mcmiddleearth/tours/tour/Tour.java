@@ -39,7 +39,7 @@ public class Tour
             tourists.add(p.getName());
             inChat.add(p.getName());
             tourNotify(yellow + "Everybody welcome " + green + p.getName() + yellow + " to the tour!");
-            p.sendMessage(yellow + "For the best experience, join " + aqua + leader + yellow + " in TeamSpeak!");
+            p.sendMessage(yellow + "For the best experience, join " + aqua + leader + yellow + " in Discord!");
         }
         else
         {

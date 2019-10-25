@@ -5,7 +5,7 @@
 
     <groupId>com.mcmiddleearth</groupId>
     <artifactId>Tours</artifactId>
-    <version>2.5.5</version>
+    <version>2.6.0</version>
     <packaging>jar</packaging>
 
     <url>https://github.com/MCME/Tours</url>
@@ -38,28 +38,22 @@
       <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.12-R0.1-SNAPSHOT</version>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>github.scarsz.discordsrv</groupId>
-            <artifactId>DiscordSRV</artifactId>
-            <version>14.0</version>
+            <groupId>com.discordsrv</groupId>
+            <artifactId>discordsrv</artifactId>
+            <version>1.16.6</version>
             <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>Scarsz-Nexus</id>
+            <url>https://nexus.scarsz.me/content/groups/public/</url>
+        </repository>
        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>

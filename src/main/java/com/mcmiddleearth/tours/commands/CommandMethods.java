@@ -120,7 +120,7 @@ public class CommandMethods
         {
             sb.append(gray).append("/tourtp or /ttp - teleport to your tour guide").append("\n");
         }
-        else if (p.hasPermission("Tours.ranger"))
+        else if (p.hasPermission("Tours.cmd.ranger"))
         {
             sb.append(gray).append("/tour start - host a tour").append("\n");
             sb.append(gray).append("/tour stop - stop your tour").append("\n");
