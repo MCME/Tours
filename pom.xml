@@ -42,25 +42,18 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>github.scarsz.discordsrv</groupId>
-            <artifactId>DiscordSRV</artifactId>
-            <version>1.16.4</version>
-            <systemPath>D:\Programme\Minecraft\spigot\1.13\plugins\DiscordSRV-Build-1.16.6.jar</systemPath>
-            <scope>system</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.discordsrv</groupId>
+            <artifactId>discordsrv</artifactId>
+            <version>1.16.6</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <repositories>
+        <repository>
+            <id>Scarsz-Nexus</id>
+            <url>https://nexus.scarsz.me/content/groups/public/</url>
+        </repository>
        <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
