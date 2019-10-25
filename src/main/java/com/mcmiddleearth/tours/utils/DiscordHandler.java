@@ -15,7 +15,7 @@ public class DiscordHandler {
 	
 	public static void tourStartDiscordMessage(Player p) 
 	{
-		discordMessage("@everyone! \n :ringmcme: **" + p.getName() + "** is starting a tour! :ringmcme:" +
+            discordMessage("!\n :ringmcme: **" + p.getName() + "** is starting a tour! :ringmcme:" +
 				"\nTo join the tour type this in game chat: ```css\n/tour join " + p.getName() + "```");
 	}
 	
