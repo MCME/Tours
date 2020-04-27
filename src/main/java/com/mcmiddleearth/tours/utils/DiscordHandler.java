@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import com.mcmiddleearth.tours.Tours;
 
 import github.scarsz.discordsrv.DiscordSRV;
-import github.scarsz.discordsrv.dependencies.jda.core.entities.TextChannel;
+import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
 import github.scarsz.discordsrv.util.DiscordUtil;
 
 /**
