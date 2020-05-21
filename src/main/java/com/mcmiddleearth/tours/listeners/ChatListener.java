@@ -17,7 +17,7 @@ import org.bukkit.Bukkit;
 public class ChatListener implements Listener
 {
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler(priority = EventPriority.LOW)
     public void PlayerChat(AsyncPlayerChatEvent e)
     {
         Player p = e.getPlayer();
