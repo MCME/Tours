@@ -248,4 +248,12 @@ public class CommandMethods
         }
     }
 
+    public static void switchFly(Player p, boolean allowed){
+        if (tours.containsKey(p.getName()))
+        {
+            Tour t = tours.get(p.getName());
+            t.toggleFly(p,allowed);
+        }
+    }
+
 }

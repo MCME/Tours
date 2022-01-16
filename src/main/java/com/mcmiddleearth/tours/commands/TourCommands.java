@@ -130,6 +130,26 @@ public class TourCommands implements TabExecutor
                     }
                     return nope(p);
                 }
+                else if (a[0].equalsIgnoreCase("deny")){
+                    if (p.hasPermission("Tours.cmd.ranger"))
+                    {
+                        if(a[1].equalsIgnoreCase("fly")){
+                            CommandMethods.switchFly(p,false);
+                            return true;
+                        }
+                    }
+                    return nope(p);
+                }
+                else if (a[0].equalsIgnoreCase("allow")) {
+                    if (p.hasPermission("Tours.cmd.ranger"))
+                    {
+                        if(a[1].equalsIgnoreCase("fly")) {
+                            CommandMethods.switchFly(p, true);
+                            return true;
+                        }
+                    }
+                    return nope(p);
+                }
             }
             if (c.equalsIgnoreCase("tourtp") || c.equalsIgnoreCase("ttp"))
             {
@@ -138,6 +158,9 @@ public class TourCommands implements TabExecutor
                     if (a.length == 1)
                     {
                         CommandMethods.tourTp(p, a[0]);
+                        return true;
+                    }else if(a.length == 0){
+                        CommandMethods.userTP(p);
                         return true;
                     }
                     p.sendMessage(gray + "/ttp <Player>");
