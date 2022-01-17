@@ -270,6 +270,11 @@ public class CommandMethods
             Tour t = tours.get(p.getName());
             t.toggleFly(p,allowed);
         }
+        else
+        {
+            p.sendMessage(gray + "You need to be leading a tour to use that!");
+        }
+
     }
 
 }

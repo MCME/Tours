@@ -26,151 +26,120 @@ public class TourCommands implements TabExecutor
             sender.sendMessage(gray + "This command can only be run by a player!");
             return true;
         }
-        else
-        {
+        else {
             Player p = (Player) sender;
 
-            if (c.equalsIgnoreCase("tour"))
-            {
-                if (a.length == 0)
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
+            if (c.equalsIgnoreCase("tour")) {
+                if (a.length == 0) {
+                    if (p.hasPermission("Tours.cmd.user")) {
                         CommandMethods.tourInfo(p);
                         return true;
                     }
                     return nope(p);
                 }
-                if (a[0].equalsIgnoreCase("request"))
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
+                if (a[0].equalsIgnoreCase("request")) {
+                    if (p.hasPermission("Tours.cmd.user")) {
                         CommandMethods.tourRequest(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("join"))
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
-                        if (a.length == 1)
-                        {
+                } else if (a[0].equalsIgnoreCase("join")) {
+                    if (p.hasPermission("Tours.cmd.user")) {
+                        if (a.length == 1) {
                             p.sendMessage(error + "Not enough arguments! /tour join <name>");
                             return true;
-                        }
-                        else
-                        {
+                        } else {
                             CommandMethods.tourJoin(p, a[1]);
                             return true;
                         }
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("leave"))
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
+                } else if (a[0].equalsIgnoreCase("leave")) {
+                    if (p.hasPermission("Tours.cmd.user")) {
                         CommandMethods.tourLeave(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("help"))
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
+                } else if (a[0].equalsIgnoreCase("help")) {
+                    if (p.hasPermission("Tours.cmd.user")) {
                         CommandMethods.tourHelp(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("start"))
-                {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
+                } else if (a[0].equalsIgnoreCase("start")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
                         CommandMethods.tourStart(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("stop"))
-                {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
+                } else if (a[0].equalsIgnoreCase("stop")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
                         CommandMethods.tourStop(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("hat"))
-                {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
+                } else if (a[0].equalsIgnoreCase("hat")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
                         CommandMethods.tourHat(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("kick"))
-                {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
-                        if (a.length == 1)
-                        {
-                            CommandMethods.kickPlayer(p,a[0]);
+                } else if (a[0].equalsIgnoreCase("kick")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
+                        if (a.length == 1) {
+                            p.sendMessage(error + "Not enough arguments! /tour kick <name>");
+                            return true;
+                        } else {
+                            CommandMethods.kickPlayer(p, a[1]);
                             return true;
                         }
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("refreshments"))
-                {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
+                } else if (a[0].equalsIgnoreCase("refreshments")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
                         CommandMethods.giveRefreshments(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("list"))
-                {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
+                } else if (a[0].equalsIgnoreCase("list")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
                         CommandMethods.tourList(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("chat"))
-                {
-                    if (p.hasPermission("Tours.cmd.user"))
-                    {
+                } else if (a[0].equalsIgnoreCase("chat")) {
+                    if (p.hasPermission("Tours.cmd.user")) {
                         CommandMethods.tourChatToggle(p);
                         return true;
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("deny")){
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
-                        if(a[1].equalsIgnoreCase("fly")){
-                            CommandMethods.switchFly(p,false);
+                } else if (a[0].equalsIgnoreCase("deny")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
+                        if (a.length == 1) {
+                            p.sendMessage(error + "Not enough arguments! /tour deny <name>");
                             return true;
+                        } else {
+                            if (a[1].equalsIgnoreCase("fly")) {
+                                CommandMethods.switchFly(p, false);
+                                return true;
+                            }
                         }
                     }
                     return nope(p);
-                }
-                else if (a[0].equalsIgnoreCase("allow")) {
-                    if (p.hasPermission("Tours.cmd.ranger"))
-                    {
-                        if(a[1].equalsIgnoreCase("fly")) {
-                            CommandMethods.switchFly(p, true);
+                } else if (a[0].equalsIgnoreCase("allow")) {
+                    if (p.hasPermission("Tours.cmd.ranger")) {
+                        if (a.length == 1) {
+                            p.sendMessage(error + "Not enough arguments! /tour allow <name>");
                             return true;
+                        } else {
+                            if (a[1].equalsIgnoreCase("fly")) {
+                                CommandMethods.switchFly(p, true);
+                                return true;
+                            }
                         }
                     }
-                    return nope(p);
                 }
+                return nope(p);
             }
             if (c.equalsIgnoreCase("tourtp") || c.equalsIgnoreCase("ttp"))
             {
