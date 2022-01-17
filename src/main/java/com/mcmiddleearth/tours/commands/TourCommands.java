@@ -112,6 +112,27 @@ public class TourCommands implements TabExecutor
                     }
                     return nope(p);
                 }
+                else if (a[0].equalsIgnoreCase("kick"))
+                {
+                    if (p.hasPermission("Tours.cmd.ranger"))
+                    {
+                        if (a.length == 1)
+                        {
+                            CommandMethods.kickPlayer(p,a[0]);
+                            return true;
+                        }
+                    }
+                    return nope(p);
+                }
+                else if (a[0].equalsIgnoreCase("refreshments"))
+                {
+                    if (p.hasPermission("Tours.cmd.ranger"))
+                    {
+                        CommandMethods.giveRefreshments(p);
+                        return true;
+                    }
+                    return nope(p);
+                }
                 else if (a[0].equalsIgnoreCase("list"))
                 {
                     if (p.hasPermission("Tours.cmd.ranger"))

@@ -189,6 +189,22 @@ public class CommandMethods
         }
     }
 
+    public static void kickPlayer(Player p, String s){
+        if (tours.containsKey(p.getName()))
+        {
+            Tour t = tours.get(p.getName());
+            t.kickPlayer(p,s);
+        }
+    }
+
+    public static void giveRefreshments(Player p){
+        if (tours.containsKey(p.getName()))
+        {
+            Tour t = tours.get(p.getName());
+            t.giveRefreshments();
+        }
+    }
+
     public static void tourList(Player p)
     {
         if (tours.containsKey(p.getName()))
