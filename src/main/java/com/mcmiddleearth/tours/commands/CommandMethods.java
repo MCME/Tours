@@ -194,6 +194,7 @@ public class CommandMethods
         {
             Tour t = tours.get(p.getName());
             t.kickPlayer(p,s);
+            tourPlayers.remove(s);
         }
     }
 
