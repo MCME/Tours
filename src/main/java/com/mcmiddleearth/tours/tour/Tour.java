@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 /**
  * @author dags_ <dags@dags.me>
@@ -234,21 +237,72 @@ public class Tour
         p.sendMessage(lPurple + "Teleported!");
     }
 
-    public void toggleFly(Player p,boolean allowed){
-        this.flightAllowed = allowed;
-        if (!tourists.isEmpty())
+    public void kickPlayer(Player p,String s){
+        Player target = p;
+
+        for (String st : tourists)
         {
-            for (String s : tourists)
+            if (st.toLowerCase().contains(s.toLowerCase()))
             {
+                OfflinePlayer op = Bukkit.getOfflinePlayer(st);
+                if (op.isOnline() && !st.equals(leader))
+                {
+                    target = (Player) op;
+                    break;
+                }
+            }
+        }
+
+        if (!target.getName().equals(p.getName()))
+        {
+            removeTourist(target);
+            p.sendMessage(dPurple + "User kicked!");
+        }
+        else
+        {
+            p.sendMessage(gray + "User not found on this tour!");
+        }
+    }
+
+    public void giveRefreshments() {
+        if (!tourists.isEmpty()) {
+            for (String s : tourists) {
                 OfflinePlayer op = Bukkit.getOfflinePlayer(s);
                 {
-                    if (op.isOnline())
-                    {
+                    if (op.isOnline()) {
                         Player q = op.getPlayer();
-                        if (!q.getName().equals(p.getName()))
-                        {
-                            q.setFlying(allowed);
-                            q.setAllowFlight(allowed);
+                        ItemStack cookie = new ItemStack(Material.COOKIE,5);
+                        ItemMeta cookie_meta = cookie.getItemMeta();
+                        cookie_meta.setDisplayName("Biscuit");
+                        cookie.setItemMeta(cookie_meta);
+                        q.getInventory().addItem(cookie);
+                        ItemStack tea = new ItemStack(Material.HONEY_BOTTLE,5);
+                        ItemMeta tea_meta = tea.getItemMeta();
+                        tea_meta.setDisplayName("Tea");
+                        tea.setItemMeta(tea_meta);
+                        q.getInventory().addItem(tea);
+                    }
+                }
+            }
+        }
+    }
+
+
+    public void toggleFly(Player p,boolean allowed){
+        this.flightAllowed = allowed;
+
+        if (!tourists.isEmpty())
+        {
+            if(!allowed) {
+                for (String s : tourists) {
+                    OfflinePlayer op = Bukkit.getOfflinePlayer(s);
+                    {
+                        if (op.isOnline()) {
+                            Player q = op.getPlayer();
+                            if (!q.getName().equals(p.getName())) {
+                                q.setFlying(false);
+                                q.setAllowFlight(false);
+                            }
                         }
                     }
                 }
