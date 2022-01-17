@@ -72,7 +72,7 @@ public class TourCommands implements TabExecutor
                         return true;
                     }
                     return nope(p);
-                } else if (a[0].equalsIgnoreCase("stop")) {
+                } else if (a[0].equalsIgnoreCase("stop") || a[0].equalsIgnoreCase("end")) {
                     if (p.hasPermission("Tours.cmd.ranger")) {
                         CommandMethods.tourStop(p);
                         return true;
@@ -200,11 +200,20 @@ public class TourCommands implements TabExecutor
                 }
                 if (sender.hasPermission("Tours.cmd.ranger"))
                 {
-                    tabs.addAll(Arrays.asList(new String[] {"start", "stop", "list", "hat"}));
+                    tabs.addAll(Arrays.asList(new String[] {"start", "stop", "list", "hat","refreshments","kick","allow","deny"}));
+                }
+                return tabs;
+            }
+            if (args[1].equals("allow") || args[1].equals("deny")){
+                List<String> tabs = new ArrayList<String> ();
+                if (sender.hasPermission("Tours.cmd.ranger"))
+                {
+                    tabs = new ArrayList<String> (Arrays.asList(new String[] {"fly"}));
                 }
                 return tabs;
             }
         }
+
         return null;
         
     }
