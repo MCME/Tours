@@ -10,6 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerToggleFlightEvent;
 
 /**
  * @author dags_ <dags@dags.me>
@@ -21,6 +22,8 @@ public class Tour
     private String name;
     private List<String> tourists;
     public List<String> inChat;
+
+    public boolean flightAllowed = true;
 
     public Tour(Player p)
     {
@@ -40,6 +43,10 @@ public class Tour
             inChat.add(p.getName());
             tourNotify(yellow + "Everybody welcome " + green + p.getName() + yellow + " to the tour!");
             p.sendMessage(yellow + "For the best experience, join " + aqua + leader + yellow + " in Discord!");
+            if(!flightAllowed){
+                p.setFlying(false);
+                p.setAllowFlight(false);
+            }
         }
         else
         {
@@ -225,6 +232,50 @@ public class Tour
         target.setDirection(p.getLocation().getDirection());
         p.teleport(target);
         p.sendMessage(lPurple + "Teleported!");
+    }
+
+    public void toggleFly(Player p,boolean allowed){
+        this.flightAllowed = allowed;
+        if (!tourists.isEmpty())
+        {
+            for (String s : tourists)
+            {
+                OfflinePlayer op = Bukkit.getOfflinePlayer(s);
+                {
+                    if (op.isOnline())
+                    {
+                        Player q = op.getPlayer();
+                        if (!q.getName().equals(p.getName()))
+                        {
+                            q.setFlying(allowed);
+                            q.setAllowFlight(allowed);
+                        }
+                    }
+                }
+            }
+            if(allowed){
+                p.sendMessage(dPurple + "Players are now allowed to fly.");
+            }else{
+                p.sendMessage(dPurple + "Players have to walk now.");
+            }
+        }
+        else
+        {
+            p.sendMessage(gray + "No players to switch this!");
+        }
+    }
+
+    public void playerToggleFlightFunc(PlayerToggleFlightEvent event) {
+        if(!flightAllowed) {
+            event.getPlayer().setFlying(false);
+            event.getPlayer().setAllowFlight(false);
+            event.setCancelled(true);
+            sendFlightNotAllowed(event.getPlayer());
+        }
+    }
+
+    private void sendFlightNotAllowed(Player player) {
+        player.sendMessage("You are not allowed to fly in this tour.");
     }
 
 }
