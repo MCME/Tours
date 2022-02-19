@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerToggleFlightEvent;
 
 import static com.mcmiddleearth.tours.Tours.tourPlayers;
 import static com.mcmiddleearth.tours.Tours.tours;
@@ -76,6 +77,16 @@ public class PlayerListener implements Listener
             {
                 touristQuit(p);
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR)
+    public void playerToggleFlight(PlayerToggleFlightEvent e) {
+        Player p = e.getPlayer();
+        if (tourPlayers.containsKey(p.getName()))
+        {
+            Tour t = tours.get(tourPlayers.get(p.getName()));
+            t.playerToggleFlightFunc(e);
         }
     }
 

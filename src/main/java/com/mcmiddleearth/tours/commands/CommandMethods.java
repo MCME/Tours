@@ -189,6 +189,23 @@ public class CommandMethods
         }
     }
 
+    public static void kickPlayer(Player p, String s){
+        if (tours.containsKey(p.getName()))
+        {
+            Tour t = tours.get(p.getName());
+            t.kickPlayer(p,s);
+            tourPlayers.remove(s);
+        }
+    }
+
+    public static void giveRefreshments(Player p){
+        if (tours.containsKey(p.getName()))
+        {
+            Tour t = tours.get(p.getName());
+            t.giveRefreshments();
+        }
+    }
+
     public static void tourList(Player p)
     {
         if (tours.containsKey(p.getName()))
@@ -246,6 +263,19 @@ public class CommandMethods
                 p.sendMessage(yellow + "You are now in tour chat! People outside the tour cannot hear you.");
             }
         }
+    }
+
+    public static void switchFly(Player p, boolean allowed){
+        if (tours.containsKey(p.getName()))
+        {
+            Tour t = tours.get(p.getName());
+            t.toggleFly(p,allowed);
+        }
+        else
+        {
+            p.sendMessage(gray + "You need to be leading a tour to use that!");
+        }
+
     }
 
 }
