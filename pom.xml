@@ -5,7 +5,7 @@
 
     <groupId>com.mcmiddleearth</groupId>
     <artifactId>Tours</artifactId>
-    <version>2.7.2</version>
+    <version>2.7.3</version>
     <packaging>jar</packaging>
 
     <url>https://github.com/MCME/Tours</url>
@@ -35,7 +35,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.6</source>
+                    <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
             </plugin>
@@ -46,7 +46,7 @@
       <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.18.2-R0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
